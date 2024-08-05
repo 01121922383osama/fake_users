@@ -23,13 +23,37 @@ class HomePage extends StatelessWidget {
               itemCount: state.users.length,
               itemBuilder: (BuildContext context, int index) {
                 final user = state.users[index];
-                return ListTile(
-                  leading: CircleAvatar(
-                    child: Text('${index + 1}'),
+                return Card(
+                  elevation: 5,
+                  margin: const EdgeInsets.all(10),
+                  color: Colors.white,
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.indigo.shade900,
+                      foregroundColor: Colors.white,
+                      child: Text('${index + 1}'),
+                    ),
+                    title: Text(
+                      user.name,
+                      style: const TextStyle(
+                        color: Colors.indigo,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      user.email,
+                      style: TextStyle(
+                        color: Colors.indigo.shade900,
+                      ),
+                    ),
+                    trailing: Text(
+                      user.userName,
+                      style: TextStyle(
+                        color: Colors.indigo.shade900,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                  title: Text(user.name),
-                  subtitle: Text(user.email),
-                  trailing: Text(user.userName),
                 );
               },
             );
