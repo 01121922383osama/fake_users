@@ -1,3 +1,4 @@
+import 'package:bloc_app/cubit/themes_cubit.dart';
 import 'package:bloc_app/cubit/users_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,18 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Users'),
+        actions: [
+          BlocBuilder<ThemesCubit, bool>(
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () {
+                  context.read<ThemesCubit>().changeTheme();
+                },
+                icon: Icon(state ? Icons.dark_mode : Icons.light_mode),
+              );
+            },
+          ),
+        ],
       ),
       body: BlocBuilder<UsersCubit, UsersState>(
         builder: (context, state) {
